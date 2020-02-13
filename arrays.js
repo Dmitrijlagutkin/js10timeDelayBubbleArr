@@ -20,14 +20,13 @@ const timerId = setInterval(() => timeInPage(), 500);
 
 //-----second psrt (delay funktion)-----
 
-const delayFunk = setInterval(() => {
+const delayFunk = setTimeout(() => {
 	console.log("I'm a delayed function")
-	clearTimeout(delayFunk)
 }, 3500)
 
 // --------third part (test bubbeles Arr)---------
 
-function ConstructArrFunk(arrLenght, firstNum = -1000, secondNum = 1000) {
+function constructArrFunk(arrLenght, firstNum = -1000, secondNum = 1000) {
 	const myArr = []
 	for (let i = 0; i < arrLenght; i++) {
 		myArr.push(firstNum + Math.random() * (secondNum - firstNum))
@@ -35,13 +34,9 @@ function ConstructArrFunk(arrLenght, firstNum = -1000, secondNum = 1000) {
 	return myArr
 }
 
-const myArrFirst = ConstructArrFunk(10)
-const myArrSecond = ConstructArrFunk(100)
-const myArrThird = ConstructArrFunk(1000)
-
-console.log(myArrFirst)
-// console.log(myArrSecond)
-// console.log(myArrThird)
+const myArrFirst = constructArrFunk(10)
+const myArrSecond = constructArrFunk(100)
+const myArrThird = constructArrFunk(1000)
 
 function bubbleSort(someArr) {
 	for (let i = someArr.length - 1; i > 0; i--) {
@@ -70,3 +65,25 @@ console.time("time")
 const sortedMyArrThird = bubbleSort(myArrThird)
 console.timeEnd("time")
 console.log("array length -", sortedMyArrThird.length)
+
+const arrSort = function (someArr) {
+	someArr.sort((prev, next) => {
+		return prev - next
+	})
+	return someArr
+}
+
+console.time("time")
+const firstArrSort = arrSort(myArrFirst)
+console.timeEnd("time")
+console.log("array length -", firstArrSort.length)
+
+console.time("time")
+const secondArrSort = arrSort(myArrSecond)
+console.timeEnd("time")
+console.log("array length -", secondArrSort.length)
+
+console.time("time")
+const thirdArrSort = arrSort(myArrThird)
+console.timeEnd("time")
+console.log("array length -", thirdArrSort.length)
